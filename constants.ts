@@ -1,7 +1,7 @@
 
 import { Product, LubricantCategory, Language } from './types';
 
-export const WHATSAPP_NUMBER = '251911234567'; // Gulele Medhanialem Branch WhatsApp
+export const WHATSAPP_NUMBER = '251927363079'; // Gulele Medhanialem Branch WhatsApp
 
 export const BRANCH_INFO = {
   name: 'Gulele Medhanialem Branch',
@@ -10,8 +10,8 @@ export const BRANCH_INFO = {
   city_am: 'አዲስ አበባ፣ ኢትዮጵያ',
   address: 'Gulele Sub-City, Near Medhanialem Church, Main Road, Addis Ababa',
   address_am: 'ጉለሌ ክፍለ ከተማ፣ ከመድኃኔዓለም ቤተክርስቲያን አቅራቢያ፣ ዋና መንገድ፣ አዲስ አበባ',
-  phone: '+251 91 123 4567',
-  phone_alt: '+251 92 234 5678',
+  phone: '+251 92 736 3079',
+  phone_alt: '+251 92 736 3079',
   working_hours: 'Mon - Sat: 8:00 AM - 7:30 PM | Sun: 9:00 AM - 5:00 PM',
   working_hours_am: 'ሰኞ - ቅዳሜ፡ 2:00 ጠዋት - 1:30 ማታ | እሑድ፡ 3:00 ጠዋት - 11:00 ቀን',
   maps_url: 'https://maps.google.com/?q=Gulele+Medhanialem+Addis+Ababa',
