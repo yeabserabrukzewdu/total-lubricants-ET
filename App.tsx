@@ -77,13 +77,17 @@ const App: React.FC = () => {
         <section className="container mx-auto px-4 py-20 md:py-28" id="products">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
             <div className="max-w-2xl">
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex flex-wrap items-center gap-2 mb-3">
                 <span className="w-10 h-1 bg-red-600 rounded-full"></span>
                 <span className="text-red-600 font-extrabold uppercase tracking-[0.2em] text-xs">
                   {t('section_collection')}
                 </span>
                 <span className="bg-red-50 text-red-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-red-200">
                   {language === 'en' ? 'Gulele Medhanialem' : 'ጉለሌ መድኃኔዓለም'}
+                </span>
+                <span className="bg-emerald-50 text-emerald-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  {t('price_bulletin')}
                 </span>
               </div>
               <h2 className="text-3xl md:text-5xl font-black text-blue-950 leading-tight mb-3">
