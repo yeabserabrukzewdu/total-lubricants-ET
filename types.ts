@@ -15,6 +15,7 @@ export enum LubricantCategory {
   HEAVY_DUTY = 'Heavy Duty Engine Oil',
   GEAR_OIL = 'Gear & Transmission',
   BRAKE_FLUID = 'Brake Fluid & Coolant',
+  INDUSTRIAL = 'Industrial & Hydraulic',
   MOTORCYCLE = 'Motorcycle Oil'
 }
 
