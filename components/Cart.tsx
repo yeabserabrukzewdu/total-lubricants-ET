@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { CartItem, Language } from '../types';
-import { WHATSAPP_NUMBER, TRANSLATIONS } from '../constants';
-import { X, Minus, Plus, ShoppingBag, ArrowRight } from 'lucide-react';
+import { WHATSAPP_NUMBER, TRANSLATIONS, BRANCH_INFO } from '../constants';
+import { X, Minus, Plus, ShoppingBag, ArrowRight, MapPin, ShieldCheck } from 'lucide-react';
 
 interface CartProps {
   items: CartItem[];
@@ -18,11 +18,21 @@ export const Cart: React.FC<CartProps> = ({ items, isOpen, onClose, onUpdateQuan
   const total = items.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
 
   const handleWhatsAppCheckout = () => {
-    const greeting = language === 'en' ? '🚀 *New Order Request*' : '🚀 *አዲስ የትዕዛዝ ጥያቄ*';
+    const greeting = language === 'en' 
+      ? '🚀 *New Order Request - TotalEnergies Lubricants*' 
+      : '🚀 *አዲስ የትዕዛዝ ጥያቄ - ቶታል ኢነርጂስ ቅባቶች*';
+    const branchLabel = language === 'en'
+      ? `📍 *Branch:* ${BRANCH_INFO.name} (${BRANCH_INFO.city})`
+      : `📍 *ቅርንጫፍ:* ${BRANCH_INFO.name_am} (${BRANCH_INFO.city_am})`;
+    const addressLabel = language === 'en'
+      ? `🏢 *Address:* ${BRANCH_INFO.address}`
+      : `🏢 *አድራሻ:* ${BRANCH_INFO.address_am}`;
     const totalLabel = language === 'en' ? '💰 *Order Total:*' : '💰 *ጠቅላላ ድምር:*';
-    const thanks = language === 'en' ? 'Please process this order. Thank you!' : 'እባክዎን ትዕዛዙን ያመቻቹ። አመሰግናለሁ!';
+    const thanks = language === 'en' 
+      ? 'Please confirm product availability at Gulele Medhanialem branch for pickup or delivery. Thank you!' 
+      : 'እባክዎን በጉለሌ መድኃኔዓለም ቅርንጫፍ የዕቃዎችን መኖር አረጋግጠው ያመቻቹልን። አመሰግናለሁ!';
 
-    const message = `${greeting} - TotalEnergies Lubricants\n\n` +
+    const message = `${greeting}\n${branchLabel}\n${addressLabel}\n\n*Items Ordered:*\n` +
       items.map(item => `✅ *${item.product.name}*\n   Qty: ${item.quantity} | Total: ${ (item.product.price * item.quantity).toLocaleString() } ETB`).join('\n\n') +
       `\n\n${totalLabel} ${total.toLocaleString()} ETB\n\n${thanks}`;
     
@@ -36,14 +46,33 @@ export const Cart: React.FC<CartProps> = ({ items, isOpen, onClose, onUpdateQuan
       <div className="absolute inset-0 bg-gray-900/60 backdrop-blur-md transition-opacity duration-300" onClick={onClose}></div>
       <div className="relative w-full max-w-lg bg-white h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-500 ease-out">
         {/* Header */}
-        <div className="p-6 md:p-8 flex items-center justify-between bg-blue-900 text-white">
-          <div className="flex items-center gap-3">
-            <ShoppingBag className="w-6 h-6" />
-            <h2 className="text-2xl font-black tracking-tight">{t('cart_title')}</h2>
+        <div className="p-6 md:p-8 bg-blue-950 text-white">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-3">
+              <ShoppingBag className="w-6 h-6 text-red-500" />
+              <h2 className="text-2xl font-black tracking-tight">{t('cart_title')}</h2>
+            </div>
+            <button onClick={onClose} className="p-2.5 hover:bg-white/10 rounded-2xl transition-colors">
+              <X className="w-6 h-6 text-white/80" />
+            </button>
           </div>
-          <button onClick={onClose} className="p-3 hover:bg-white/10 rounded-2xl transition-colors">
-            <X className="w-6 h-6" />
-          </button>
+          <div className="flex items-center gap-1.5 text-xs text-blue-200">
+            <MapPin className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
+            <span className="font-semibold truncate">
+              {language === 'en' ? BRANCH_INFO.name : BRANCH_INFO.name_am} • {BRANCH_INFO.city}
+            </span>
+          </div>
+        </div>
+
+        {/* Branch Notice Banner */}
+        <div className="bg-red-50 px-6 py-2.5 border-b border-red-100 flex items-center justify-between text-xs text-red-900 font-semibold">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-red-600 flex-shrink-0" />
+            <span>{t('cart_branch_notice')}</span>
+          </div>
+          <span className="text-[10px] font-bold text-red-600 uppercase tracking-wider bg-white px-2 py-0.5 rounded border border-red-200">
+            Gulele
+          </span>
         </div>
 
         {/* Content */}

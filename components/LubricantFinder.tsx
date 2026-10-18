@@ -33,7 +33,7 @@ export const LubricantFinder: React.FC<LubricantFinderProps> = ({ language }) =>
   };
 
   return (
-    <div className="bg-gradient-to-br from-[#001e3c] to-[#004a99] rounded-[2.5rem] p-6 md:p-12 text-white shadow-2xl relative overflow-hidden">
+    <div id="finder" className="bg-gradient-to-br from-[#001e3c] to-[#004a99] rounded-[2.5rem] p-6 md:p-12 text-white shadow-2xl relative overflow-hidden scroll-mt-28">
       <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/20 blur-[100px] -mr-32 -mt-32"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-400/10 blur-[80px] -ml-20 -mb-20"></div>
       
@@ -41,7 +41,7 @@ export const LubricantFinder: React.FC<LubricantFinderProps> = ({ language }) =>
         <div className="flex-1">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-blue-200 font-bold text-[10px] uppercase tracking-widest mb-6">
             <Sparkles className="w-3 h-3 text-blue-300" />
-            AI Expert Support
+            {language === 'en' ? 'Gulele Medhanialem Branch • AI Match' : 'ጉለሌ መድኃኔዓለም ቅርንጫፍ • AI ምዘና'}
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-6 leading-tight">{t('finder_title')}</h2>
           <p className="text-blue-100/70 mb-10 text-lg leading-relaxed max-w-lg">
@@ -97,7 +97,7 @@ export const LubricantFinder: React.FC<LubricantFinderProps> = ({ language }) =>
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  {language === 'en' ? 'Processing...' : 'በማቀናበር ላይ...'}
+                  {language === 'en' ? 'Checking Gulele Stock...' : 'ክምችት በመመርመር ላይ...'}
                 </>
               ) : t('finder_btn')}
             </button>
@@ -108,17 +108,31 @@ export const LubricantFinder: React.FC<LubricantFinderProps> = ({ language }) =>
           <div className="w-full relative">
             {result ? (
               <div className="bg-white rounded-[2rem] p-8 text-blue-900 shadow-2xl animate-in zoom-in slide-in-from-right-10 duration-500">
-                <div className="bg-red-600 text-[10px] font-black uppercase px-3 py-1.5 rounded-lg inline-block mb-6 text-white tracking-widest">AI Result</div>
-                <h4 className="text-2xl font-black mb-4 leading-tight">{result.recommendedProduct}</h4>
-                <div className="w-full h-1 bg-gray-100 rounded-full mb-6 overflow-hidden">
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <div className="bg-red-600 text-[10px] font-black uppercase px-3 py-1.5 rounded-lg text-white tracking-widest">
+                    AI Match
+                  </div>
+                  <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">
+                    {language === 'en' ? 'In Stock @ Gulele' : 'በጉለሌ ቅርንጫፍ ይገኛል'}
+                  </span>
+                </div>
+                <h4 className="text-2xl font-black mb-3 leading-tight">{result.recommendedProduct}</h4>
+                <div className="w-full h-1 bg-gray-100 rounded-full mb-4 overflow-hidden">
                   <div className="w-full h-full bg-red-600 animate-in slide-in-from-left duration-1000"></div>
                 </div>
-                <p className="text-gray-600 leading-relaxed mb-8 italic">"{result.reasoning}"</p>
+                <p className="text-gray-600 text-sm leading-relaxed mb-6 italic">"{result.reasoning}"</p>
+                
+                <div className="p-3 bg-blue-50/70 rounded-xl border border-blue-100 mb-6 text-xs text-blue-900 font-semibold">
+                  {language === 'en' 
+                    ? '📍 Ready for immediate pickup or delivery from Gulele Medhanialem branch.' 
+                    : '📍 ከጉለሌ መድኃኔዓለም ቅርንጫፍ ለፈጣን ርክክብ ወይም ማድረስ ዝግጁ ነው።'}
+                </div>
+
                 <button 
                   onClick={() => setResult(null)}
-                  className="w-full py-3 rounded-xl border-2 border-blue-900/10 hover:bg-blue-900 hover:text-white font-bold transition-all"
+                  className="w-full py-3 rounded-xl border-2 border-blue-900/10 hover:bg-blue-900 hover:text-white font-bold transition-all text-sm"
                 >
-                  {language === 'en' ? 'Start Over' : 'እንደገና ጀምር'}
+                  {language === 'en' ? 'Check Another Vehicle' : 'ሌላ ተሽከርካሪ ይመርምሩ'}
                 </button>
               </div>
             ) : (
@@ -126,7 +140,11 @@ export const LubricantFinder: React.FC<LubricantFinderProps> = ({ language }) =>
                 <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6 animate-pulse">
                   <Sparkles className="w-10 h-10 text-blue-300/30" />
                 </div>
-                <p className="text-blue-300/50 text-sm font-semibold max-w-[200px]">{language === 'en' ? 'Enter vehicle details to unlock AI recommendation' : 'የተሽከርካሪ ዝርዝሮችን ያስገቡ'}</p>
+                <p className="text-blue-300/70 text-sm font-semibold max-w-[240px]">
+                  {language === 'en' 
+                    ? 'Enter vehicle details to verify the exact match available at Gulele Medhanialem branch' 
+                    : 'በጉለሌ መድኃኔዓለም ቅርንጫፍ የሚገኘውን ትክክለኛ ዘይት ለማወቅ የተሽከርካሪ ዝርዝር ያስገቡ'}
+                </p>
               </div>
             )}
           </div>
