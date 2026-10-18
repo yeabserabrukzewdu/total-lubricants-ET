@@ -1,5 +1,6 @@
 {
   "name": "TotalEnergies Lubricants E-Shop",
-  "description": "A premium e-commerce platform for Total Lubricants featuring a modern UI, AI-powered oil recommendation engine, and seamless WhatsApp checkout for personalized ordering.",
-  "requestFramePermissions": []
+  "description": "Premium e-commerce platform for TotalEnergies Lubricants Gulele Medhanialem Branch (Addis Ababa), featuring AI-powered oil recommendations and direct WhatsApp ordering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
 }
